@@ -1,0 +1,32 @@
+export const PROFILE = {
+  name: 'Minh Châu',
+  tagline: '"Người hiểu nhiều nhưng đang học cách sống thật với những gì mình hiểu."',
+  persona: { emoji: '🧭', label: 'Nhân viên văn phòng / Corporate' },
+  tests: [
+    { label: 'MaxDiff', done: true },
+    { label: 'MBTI · INTJ', done: true },
+    { label: 'Enneagram · Type 5', done: true },
+    { label: 'BaZi · Canh Kim', done: true },
+    { label: 'Cung hoàng đạo', done: false },
+  ],
+  whoYouAre: 'Có điều gì đó ở bạn mà người ngoài ít thấy — một sự nhạy cảm sâu ẩn sau vẻ ngoài điều độ và logic. Bạn xử lý thế giới bằng cách quan sát trước, hiểu sau, rồi mới hành động — và điều đó khiến bạn thường đi chậm hơn những người xung quanh, không phải vì kém hơn, mà vì bạn cần chắc chắn hơn.\n\nNhững gì bạn đang tìm không phải là câu trả lời — mà là một không gian để câu hỏi của bạn được xem là **hợp lý**.',
+  hiddenStrength: 'Bạn có khả năng nhìn thấy pattern mà người khác bỏ qua — trong hệ thống, trong con người, trong cả chính mình. Đây là thứ mà không phải ai cũng có, và cũng không thể học được trong ngắn hạn.\n\nĐiều đáng nói là bạn thường **đánh giá thấp** khả năng này — vì với bạn, nhìn thấy pattern là chuyện bình thường. Nhưng không phải với người khác.',
+  whatHoldsBack: 'Bạn biết rất nhiều về bản thân — nhưng **biết và sống theo là hai việc khác nhau**. Có một khoảng cách giữa hiểu và hành động mà bạn chưa tìm được cây cầu phù hợp.\n\nPattern này thường xuất hiện ở người có nội tâm phong phú nhưng môi trường xung quanh không có đủ không gian để họ thực hành — không phải thiếu can đảm, mà thiếu nơi an toàn để thử.',
+  nextStep: 'Những gì bạn cần không phải là thêm framework hay thêm thông tin — mà là một **môi trường an toàn để thực hành**. Một không gian mà bạn có thể đặt câu hỏi mà không bị phán xét, thử sai mà không mất quá nhiều, và được đồng hành bởi những người cùng giai đoạn.\n\nĐó là điều Nedu Cohort được xây dựng để làm — không phải dạy lý thuyết, mà tạo ra không gian đó cho bạn.',
+  maxdiff: [
+    { label: 'Thoát khỏi bẫy ổn nhưng không hạnh phúc', score: 92 },
+    { label: 'Lên kế hoạch chuyển hướng sự nghiệp', score: 78 },
+    { label: 'Tìm lại ý nghĩa và động lực đi làm', score: 65 },
+    { label: 'Hiểu rõ điểm mạnh và định vị bản thân', score: 58 },
+    { label: 'Phục hồi năng lượng sau giờ làm', score: 42 },
+    { label: 'Quản lý cảm xúc trong môi trường áp lực', score: 35 },
+    { label: 'Phát triển kỹ năng lãnh đạo bản thân', score: 28 },
+    { label: 'Xây dựng mối quan hệ sâu sắc hơn', score: 15 },
+  ],
+  recommendation: {
+    courseName: 'Thiết Kế Bản Thân Toàn Diện · Cohort K13',
+    why: 'Bạn đang ở giai đoạn mà mọi thứ bên ngoài trông ổn — nhưng bên trong thiếu hướng. Khoá Cohort K13 không dạy lý thuyết, nó giúp bạn ngồi xuống và thực sự nhìn rõ mình muốn đi đâu.',
+    price: '8.500.000đ',
+    meta: ['👥 Cohort · Nhóm 15–20 người', '🌐 Online · Zoom', '📅 01/06/2026', '⏱ 8 tuần'],
+  },
+};
