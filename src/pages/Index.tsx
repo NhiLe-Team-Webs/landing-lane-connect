@@ -1,16 +1,59 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { PROFILE } from "@/data/mockProfile";
+import TopBar from "@/components/nedu/TopBar";
+import HeroSection from "@/components/nedu/HeroSection";
+import ProfileSection from "@/components/nedu/ProfileSection";
+import MaxDiffChart from "@/components/nedu/MaxDiffChart";
+import CourseRecommendation from "@/components/nedu/CourseRecommendation";
+import NextSteps from "@/components/nedu/NextSteps";
+import ShareSection from "@/components/nedu/ShareSection";
+import Footer from "@/components/nedu/Footer";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen bg-background">
+      <TopBar />
+      <HeroSection />
+      <div className="max-w-[720px] mx-auto px-6 pb-0">
+        <ProfileSection
+          num="01"
+          label="Bạn là người như thế nào"
+          title="Điều Nedu nhận ra<br/>ở bạn"
+          subtitle="Tổng hợp từ MaxDiff · MBTI · Enneagram · BaZi"
+          text={PROFILE.whoYouAre}
+          variant="who"
+        />
+        <ProfileSection
+          num="02"
+          label="Điểm mạnh ít ai nhìn ra"
+          title="Sức mạnh bạn<br/>chưa dùng hết"
+          subtitle="Từ pattern chung của các bài test"
+          text={PROFILE.hiddenStrength}
+          variant="strength"
+        />
+        <ProfileSection
+          num="03"
+          label="Điều đang giữ bạn lại"
+          title="Không phải điểm yếu —<br/>là điểm chưa giải quyết"
+          subtitle="Góc nhìn từ tension nội tâm"
+          text={PROFILE.whatHoldsBack}
+          variant="holds"
+        />
+        <MaxDiffChart />
+        <ProfileSection
+          num="04"
+          label="Bước tiếp theo"
+          title="Hành trình phù hợp<br/>nhất với bạn lúc này"
+          subtitle="Gợi ý dựa trên toàn bộ profile"
+          text={PROFILE.nextStep}
+          variant="next"
+        />
+        <CourseRecommendation />
+        <NextSteps />
+        <ShareSection />
+      </div>
+      <Footer />
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
