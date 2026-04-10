@@ -34,7 +34,10 @@ const ReportPage = () => {
 
   useEffect(() => {
     if (!token) return;
-    fetch(`https://test.nhi.sg/api/report/${token}`)
+    
+    const apiUrl = `${import.meta.env.VITE_API_URL}/report/${token}`;
+
+    fetch(apiUrl)
       .then((r) => {
         if (!r.ok) throw new Error("Not found");
         return r.json();
@@ -79,8 +82,11 @@ const ReportPage = () => {
     );
   }
 
+  const testUrl = import.meta.env.VITE_TEST_URL || "https://test.nhi.sg";
+  const neduUrl = import.meta.env.VITE_NEDU_URL || "https://nedu.nhi.sg";
+
   const tests = [
-    { label: "MaxDiff", done: true },
+    { label: "MaxDiff", done: true, url: `${testUrl}/maxdiff/${token}` },
     { label: `MBTI · ${data.mbti_type ?? "?"}`, done: !!data.mbti_type },
     { label: `Enneagram · Type ${data.enneagram_type ?? "?"}`, done: !!data.enneagram_type },
     { label: "BaZi", done: !!data.bazi_data },
@@ -89,58 +95,106 @@ const ReportPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <TopBar />
-      <HeroSection
-        name="Hồ sơ của bạn"
-        tagline=""
-        persona={{
-          emoji: getPersonaEmoji(data.persona_label),
-          label: data.persona_label,
-        }}
-        tests={tests}
-      />
-      <div className="max-w-[720px] mx-auto px-6 pb-0">
-        <ProfileSection
-          num="01"
-          label="Bạn là người như thế nào"
-          title="Điều Nedu nhận ra<br/>ở bạn"
-          subtitle="Tổng hợp từ MaxDiff · MBTI · Enneagram · BaZi"
-          text={data.bazi_interp ?? "Đang tải phân tích..."}
-          variant="who"
+      <div className="print:hidden">
+        <TopBar />
+        <HeroSection
+          name={data.name || "Hồ sơ của bạn"}
+          tagline=""
+          persona={{
+            emoji: getPersonaEmoji(data.persona_label),
+            label: data.persona_label,
+          }}
+          tests={tests}
         />
-        <ProfileSection
-          num="02"
-          label="Điểm mạnh ít ai nhìn ra"
-          title="Sức mạnh bạn<br/>chưa dùng hết"
-          subtitle="Từ pattern chung của các bài test"
-          text={data.numerology_interp ?? "Đang tải phân tích..."}
-          variant="strength"
-        />
-        <ProfileSection
-          num="03"
-          label="MBTI"
-          title="Góc nhìn<br/>logic &amp; hành vi"
-          subtitle="Từ bài kiểm tra Myer-Briggs"
-          text={data.mbti_desc ?? "Bạn chưa hoàn thành bài test MBTI. <a href='https://test.nhi.sg' class='underline hover:text-primary transition-colors'>Vào đây để làm →</a>"}
-          variant="holds"
-        />
-        <ProfileSection
-          num="04"
-          label="Enneagram"
-          title="Động lực nội tâm<br/>&amp; nỗi sợ sâu thẳm"
-          subtitle="Từ bài kiểm tra Enneagram"
-          text={data.enneagram_desc ?? "Bạn chưa hoàn thành bài test Enneagram. <a href='https://test.nhi.sg' class='underline hover:text-primary transition-colors'>Vào đây để làm →</a>"}
-          variant="next"
-        />
-        <CourseRecommendation
-          courseName={data.primary_course_name}
-          why={data.why_fits}
-          courseUrl={data.primary_course_url}
-        />
-        <NextSteps />
-        <ShareSection />
       </div>
-      <Footer />
+
+      <div className="max-w-[720px] mx-auto px-6 pb-0 pt-16 space-y-24 print:max-w-full print:pt-0 print:space-y-12">
+
+        {/* MaxDiff iframe */}
+        <section className="w-full animate-fade-in-up delay-200 print:break-inside-avoid">
+          <div className="flex items-start gap-4 mb-8">
+            <span className="text-3xl font-bold font-mono text-ink-3/50 leading-none">01</span>
+            <div className="pt-1">
+              <h3 className="text-xs font-bold tracking-[0.2em] text-ink-3 uppercase mb-1">Nhu cầu cá nhân</h3>
+              <h2 className="text-3xl font-light text-ink-1">Kết quả <span className="font-medium italic">MaxDiff</span></h2>
+            </div>
+          </div>
+          <div className="w-full h-[80vh] md:h-[1000px] bg-white/50 backdrop-blur-sm rounded-[2rem] overflow-hidden shadow-sm border border-glass-border">
+            <iframe src={`${testUrl}/maxdiff/${token}?embed=1`} className="w-full h-full border-0 mix-blend-multiply" loading="lazy"></iframe>
+          </div>
+        </section>
+
+        {/* MBTI iframe */}
+        <section className="w-full animate-fade-in-up delay-300 print:break-inside-avoid">
+          <div className="flex items-start gap-4 mb-8">
+            <span className="text-3xl font-bold font-mono text-ink-3/50 leading-none">02</span>
+            <div className="pt-1">
+              <h3 className="text-xs font-bold tracking-[0.2em] text-ink-3 uppercase mb-1">Kiểu phân loại</h3>
+              <h2 className="text-3xl font-light text-ink-1">Báo cáo <span className="font-medium italic">MBTI</span></h2>
+            </div>
+          </div>
+          <div className="w-full h-[80vh] md:h-[1000px] bg-white/50 backdrop-blur-sm rounded-[2rem] overflow-hidden shadow-sm border border-glass-border">
+            <iframe src={`${testUrl}/mbti/${token}?embed=1`} className="w-full h-full border-0 mix-blend-multiply" loading="lazy"></iframe>
+          </div>
+        </section>
+
+        {/* Enneagram iframe */}
+        <section className="w-full animate-fade-in-up delay-400 print:break-inside-avoid">
+          <div className="flex items-start gap-4 mb-8">
+            <span className="text-3xl font-bold font-mono text-ink-3/50 leading-none">03</span>
+            <div className="pt-1">
+              <h3 className="text-xs font-bold tracking-[0.2em] text-ink-3 uppercase mb-1">Xác định nhóm tính cách</h3>
+              <h2 className="text-3xl font-light text-ink-1">Báo cáo <span className="font-medium italic">Enneagram</span></h2>
+            </div>
+          </div>
+          <div className="w-full h-[80vh] md:h-[1000px] bg-white/50 backdrop-blur-sm rounded-[2rem] overflow-hidden shadow-sm border border-glass-border">
+            <iframe src={`${testUrl}/enneagram/${token}?embed=1`} className="w-full h-full border-0 mix-blend-multiply" loading="lazy"></iframe>
+          </div>
+        </section>
+
+        {/* Bazi iframe */}
+        <section className="w-full animate-fade-in-up delay-500 print:break-inside-avoid">
+          <div className="flex items-start gap-4 mb-8">
+            <span className="text-3xl font-bold font-mono text-ink-3/50 leading-none">04</span>
+            <div className="pt-1">
+              <h3 className="text-xs font-bold tracking-[0.2em] text-ink-3 uppercase mb-1">Bản thể cốt lõi & Vận mệnh</h3>
+              <h2 className="text-3xl font-light text-ink-1">Báo cáo <span className="font-medium italic">BaZi (Bát Tự)</span></h2>
+            </div>
+          </div>
+          <div className="w-full h-[80vh] md:h-[1200px] bg-white/50 backdrop-blur-sm rounded-[2rem] overflow-hidden shadow-sm border border-glass-border">
+            <iframe src={`${testUrl}/report/${token}?embed=1`} className="w-full h-full border-0 mix-blend-multiply" loading="lazy"></iframe>
+          </div>
+        </section>
+
+        {/* Thần Số Học (Assuming endpoint format) */}
+        {data.numerology_data && (
+          <section className="w-full animate-fade-in-up delay-600 print:break-inside-avoid">
+            <div className="flex items-start gap-4 mb-8">
+              <span className="text-3xl font-bold font-mono text-ink-3/50 leading-none">05</span>
+              <div className="pt-1">
+                <h3 className="text-xs font-bold tracking-[0.2em] text-ink-3 uppercase mb-1">Năng lượng các con số</h3>
+                <h2 className="text-3xl font-light text-ink-1">Báo cáo <span className="font-medium italic">Thần Số Học</span></h2>
+              </div>
+            </div>
+            <div className="w-full h-[80vh] md:h-[1000px] bg-white/50 backdrop-blur-sm rounded-[2rem] overflow-hidden shadow-sm border border-glass-border">
+              <iframe src={`${testUrl}/numerology/${token}?embed=1`} className="w-full h-full border-0 mix-blend-multiply" loading="lazy"></iframe>
+            </div>
+          </section>
+        )}
+
+        <div className="print:hidden">
+          <CourseRecommendation
+            courseName={data.ai_recommendation?.primary_course_name || data.primary_course_name || "Khoá học Đánh Thức Sức Mạnh"}
+            why={data.ai_recommendation?.why_fits || data.why_fits || "Phù hợp trực tiếp với nhu cầu hiện tại của bạn."}
+            courseUrl={data.ai_recommendation?.primary_course_url || data.primary_course_url || neduUrl}
+          />
+          <NextSteps />
+          <ShareSection />
+        </div>
+      </div>
+      <div className="print:hidden">
+        <Footer />
+      </div>
     </div>
   );
 };

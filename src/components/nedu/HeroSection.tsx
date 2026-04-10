@@ -13,7 +13,7 @@ const HeroSection = ({ name, tagline, persona, tests }: HeroSectionProps) => {
       <div className="absolute -bottom-20 -left-16 w-72 h-72 rounded-full" style={{ background: "radial-gradient(circle, hsla(153, 37%, 37%, 0.2) 0%, transparent 70%)" }} />
       {/* Pattern overlay */}
       <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f5b419' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")` }} />
-      
+
       <div className="relative z-10 max-w-[680px] mx-auto text-center w-full">
         <p className="font-mono text-[11px] tracking-widest uppercase mb-5" style={{ color: "rgba(255,255,255,0.35)" }}>
           Tháng 4/2026 · Phiên bản cá nhân hoá
@@ -35,11 +35,10 @@ const HeroSection = ({ name, tagline, persona, tests }: HeroSectionProps) => {
           {tests.map((t) => (
             <span
               key={t.label}
-              className={`flex items-center gap-1 rounded-lg px-3 py-1 text-[10px] font-mono border ${
-                t.done
+              className={`flex items-center gap-1 rounded-lg px-3 py-1 text-[10px] font-mono border ${t.done
                   ? "border-secondary/30 text-emerald-300"
                   : "border-secondary-foreground/10 text-secondary-foreground/50"
-              }`}
+                }`}
               style={{ background: t.done ? "rgba(45,106,79,0.2)" : "rgba(255,255,255,0.06)" }}
             >
               {t.done ? "✓" : "○"} {t.label}
