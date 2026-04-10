@@ -1,6 +1,11 @@
-import { PROFILE } from "@/data/mockProfile";
+interface HeroSectionProps {
+  name: string;
+  tagline: string;
+  persona: { emoji: string; label: string };
+  tests: Array<{ label: string; done: boolean }>;
+}
 
-const HeroSection = () => {
+const HeroSection = ({ name, tagline, persona, tests }: HeroSectionProps) => {
   return (
     <section className="relative overflow-hidden min-h-[420px] flex items-center px-6 py-16" style={{ background: "var(--hero-gradient)" }}>
       {/* Orbs */}
@@ -18,16 +23,16 @@ const HeroSection = () => {
         </div>
         <h1 className="font-display text-[clamp(28px,4vw,44px)] font-bold leading-tight mb-4 tracking-tight" style={{ color: "#fff" }}>
           Xin chào,<br />
-          <em className="italic text-primary">{PROFILE.name}</em>
+          <em className="italic text-primary">{name}</em>
         </h1>
         <p className="font-display text-[clamp(16px,2.2vw,21px)] font-normal italic leading-relaxed max-w-[520px] mx-auto mb-7" style={{ color: "rgba(255,255,255,0.65)" }}>
-          {PROFILE.tagline}
+          {tagline}
         </p>
         <div className="inline-flex items-center gap-2 rounded-full px-5 py-1.5 text-[13px] border" style={{ background: "rgba(255,255,255,0.07)", borderColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)" }}>
-          {PROFILE.persona.emoji} {PROFILE.persona.label}
+          {persona.emoji} {persona.label}
         </div>
         <div className="flex gap-1.5 justify-center mt-5 flex-wrap">
-          {PROFILE.tests.map((t) => (
+          {tests.map((t) => (
             <span
               key={t.label}
               className={`flex items-center gap-1 rounded-lg px-3 py-1 text-[10px] font-mono border ${

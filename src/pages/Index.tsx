@@ -12,7 +12,12 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <TopBar />
-      <HeroSection />
+      <HeroSection 
+        name={PROFILE.name} 
+        tagline={PROFILE.tagline} 
+        persona={PROFILE.persona} 
+        tests={PROFILE.tests} 
+      />
       <div className="max-w-[720px] mx-auto px-6 pb-0">
         <ProfileSection
           num="01"
@@ -47,7 +52,10 @@ const Index = () => {
           text={PROFILE.nextStep}
           variant="next"
         />
-        <CourseRecommendation />
+        <CourseRecommendation 
+          courseName={PROFILE.recommendation.courseName} 
+          why={PROFILE.recommendation.why} 
+        />
         <NextSteps />
         <ShareSection />
       </div>
