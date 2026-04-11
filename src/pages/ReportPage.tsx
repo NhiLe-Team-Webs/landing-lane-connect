@@ -99,7 +99,7 @@ const ReportPage = () => {
         <div className="relative">
           <TopBar />
           <a
-            href={`${testUrl}/report/${token}`}
+            href={`${testUrl}/report/${token}?print=1`}
             target="_blank"
             rel="noopener noreferrer"
             className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold border transition-all hover:opacity-80"
