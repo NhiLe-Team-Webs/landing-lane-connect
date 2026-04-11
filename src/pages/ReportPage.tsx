@@ -162,7 +162,7 @@ const ReportPage = () => {
             </div>
           </div>
           <div className="w-full h-[80vh] md:h-[1200px] bg-white/50 backdrop-blur-sm rounded-[2rem] overflow-hidden shadow-sm border border-glass-border">
-            <iframe src={`${testUrl}/api/bazi-numerology/${token}`} className="w-full h-full border-0 mix-blend-multiply" loading="lazy"></iframe>
+            <iframe src={`${testUrl}/bazi-numerology/${token}?embed=1`} className="w-full h-full border-0 mix-blend-multiply" loading="lazy"></iframe>
           </div>
         </section>
 
