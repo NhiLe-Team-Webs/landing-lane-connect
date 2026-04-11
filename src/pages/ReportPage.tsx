@@ -89,8 +89,7 @@ const ReportPage = () => {
     { label: "MaxDiff", done: true, url: `${testUrl}/maxdiff/${token}` },
     { label: `MBTI · ${data.mbti_type ?? "?"}`, done: !!data.mbti_type },
     { label: `Enneagram · Type ${data.enneagram_type ?? "?"}`, done: !!data.enneagram_type },
-    { label: "BaZi", done: !!data.bazi_data },
-    { label: "Thần Số Học", done: !!data.numerology_data },
+    { label: "BaZi · Thần Số Học", done: !!data.bazi_data },
   ];
 
   return (
@@ -180,21 +179,6 @@ const ReportPage = () => {
           </div>
         </section>
 
-        {/* Thần Số Học (Assuming endpoint format) */}
-        {data.numerology_data && (
-          <section className="w-full animate-fade-in-up delay-600 print:break-inside-avoid">
-            <div className="flex items-start gap-4 mb-8">
-              <span className="text-3xl font-bold font-mono text-ink-3/50 leading-none">05</span>
-              <div className="pt-1">
-                <h3 className="text-xs font-bold tracking-[0.2em] text-ink-3 uppercase mb-1">Năng lượng các con số</h3>
-                <h2 className="text-3xl font-light text-ink-1">Báo cáo <span className="font-medium italic">Thần Số Học</span></h2>
-              </div>
-            </div>
-            <div className="w-full h-[80vh] md:h-[1000px] bg-white/50 backdrop-blur-sm rounded-[2rem] overflow-hidden shadow-sm border border-glass-border">
-              <iframe src={`${testUrl}/numerology/${token}?embed=1`} className="w-full h-full border-0 mix-blend-multiply" loading="lazy"></iframe>
-            </div>
-          </section>
-        )}
 
         <div className="print:hidden">
           <CourseRecommendation
