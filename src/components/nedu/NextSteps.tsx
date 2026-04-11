@@ -1,4 +1,4 @@
-const NextSteps = () => {
+const NextSteps = ({ pdfUrl }: { pdfUrl?: string }) => {
   const testUrl = import.meta.env.VITE_TEST_URL || "https://test.nhi.sg";
   const neduUrl = import.meta.env.VITE_NEDU_URL || "https://nedu.nhi.sg";
 
@@ -6,7 +6,7 @@ const NextSteps = () => {
     { icon: "🌸", title: "Đăng ký khoá học ngay", desc: "Điền form ngắn — team Nedu liên hệ trong 24h để xác nhận", href: neduUrl },
     { icon: "💬", title: "Nói chuyện với team Nedu", desc: "30 phút tư vấn miễn phí · Không áp lực", href: neduUrl },
     { icon: "🔮", title: "Làm thêm bài test", desc: "MBTI · Enneagram · BaZi để làm sâu hơn profile", href: testUrl },
-    { icon: "📄", title: "Tải hồ sơ PDF", desc: "Lưu về máy — như món quà Nedu tặng riêng bạn", action: () => window.print() },
+    { icon: "📄", title: "Tải hồ sơ PDF", desc: "Lưu về máy — như món quà Nedu tặng riêng bạn", href: pdfUrl },
   ];
 
   return (

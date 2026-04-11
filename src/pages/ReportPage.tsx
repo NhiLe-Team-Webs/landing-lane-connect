@@ -186,8 +186,8 @@ const ReportPage = () => {
             why={data.ai_recommendation?.why_fits || data.why_fits || "Phù hợp trực tiếp với nhu cầu hiện tại của bạn."}
             courseUrl={data.ai_recommendation?.primary_course_url || data.primary_course_url || neduUrl}
           />
-          <NextSteps />
-          <ShareSection />
+          <NextSteps pdfUrl={`${testUrl}/report/${token}?print=1`} />
+          <ShareSection pdfUrl={`${testUrl}/report/${token}?print=1`} tagline={data.ai_recommendation?.tagline || data.tagline} />
         </div>
       </div>
       <div className="print:hidden">
