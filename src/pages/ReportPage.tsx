@@ -84,6 +84,7 @@ const ReportPage = () => {
 
   const testUrl = import.meta.env.VITE_TEST_URL || "https://test.nhi.sg";
   const neduUrl = import.meta.env.VITE_NEDU_URL || "https://nedu.nhi.sg";
+  const pdfUrl = `${testUrl}/api/pdf/${token}`;
 
   const tests = [
     { label: "MaxDiff", done: true, url: `${testUrl}/maxdiff/${token}` },
@@ -96,7 +97,20 @@ const ReportPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="print:hidden">
-        <TopBar />
+        <div className="relative">
+          <TopBar />
+          <a
+            href={pdfUrl}
+            download
+            className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold border transition-all hover:opacity-80"
+            style={{ background: "rgba(245,180,25,0.15)", borderColor: "rgba(245,180,25,0.35)", color: "hsl(var(--primary))" }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Tải PDF
+          </a>
+        </div>
         <HeroSection
           name={data.name || "Hồ sơ của bạn"}
           tagline=""
