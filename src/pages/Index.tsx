@@ -1,64 +1,46 @@
-import { PROFILE } from "@/data/mockProfile";
 import TopBar from "@/components/nedu/TopBar";
-import HeroSection from "@/components/nedu/HeroSection";
-import ProfileSection from "@/components/nedu/ProfileSection";
-import MaxDiffChart from "@/components/nedu/MaxDiffChart";
-import CourseRecommendation from "@/components/nedu/CourseRecommendation";
-import NextSteps from "@/components/nedu/NextSteps";
-import ShareSection from "@/components/nedu/ShareSection";
 import Footer from "@/components/nedu/Footer";
+
+const testUrl = import.meta.env.VITE_TEST_URL || "https://test.nhi.sg";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <TopBar />
-      <HeroSection 
-        name={PROFILE.name} 
-        tagline={PROFILE.tagline} 
-        persona={PROFILE.persona} 
-        tests={PROFILE.tests} 
-      />
-      <div className="max-w-[720px] mx-auto px-6 pb-0">
-        <ProfileSection
-          num="01"
-          label="Bạn là người như thế nào"
-          title="Điều Nedu nhận ra<br/>ở bạn"
-          subtitle="Tổng hợp từ MaxDiff · MBTI · Enneagram · BaZi"
-          text={PROFILE.whoYouAre}
-          variant="who"
-        />
-        <ProfileSection
-          num="02"
-          label="Điểm mạnh ít ai nhìn ra"
-          title="Sức mạnh bạn<br/>chưa dùng hết"
-          subtitle="Từ pattern chung của các bài test"
-          text={PROFILE.hiddenStrength}
-          variant="strength"
-        />
-        <ProfileSection
-          num="03"
-          label="Điều đang giữ bạn lại"
-          title="Không phải điểm yếu —<br/>là điểm chưa giải quyết"
-          subtitle="Góc nhìn từ tension nội tâm"
-          text={PROFILE.whatHoldsBack}
-          variant="holds"
-        />
-        <MaxDiffChart />
-        <ProfileSection
-          num="04"
-          label="Bước tiếp theo"
-          title="Hành trình phù hợp<br/>nhất với bạn lúc này"
-          subtitle="Gợi ý dựa trên toàn bộ profile"
-          text={PROFILE.nextStep}
-          variant="next"
-        />
-        <CourseRecommendation 
-          courseName={PROFILE.recommendation.courseName} 
-          why={PROFILE.recommendation.why} 
-        />
-        <NextSteps />
-        <ShareSection />
-      </div>
+      <main className="flex-1 flex items-center justify-center px-6 py-20" style={{ background: "var(--hero-gradient)" }}>
+        {/* Orbs */}
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, hsla(45, 91%, 53%, 0.1) 0%, transparent 70%)" }} />
+        <div className="absolute -bottom-20 -left-16 w-72 h-72 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, hsla(153, 37%, 37%, 0.2) 0%, transparent 70%)" }} />
+
+        <div className="relative z-10 max-w-[560px] mx-auto text-center w-full space-y-8">
+          <div className="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-wider font-mono uppercase border" style={{ background: "rgba(245,180,25,0.15)", borderColor: "rgba(245,180,25,0.25)", color: "hsl(var(--primary))" }}>
+            ✦ Hồ sơ tâm lý · Nedu AI
+          </div>
+
+          <h1 className="font-display text-[clamp(28px,4vw,44px)] font-bold leading-tight tracking-tight" style={{ color: "#fff" }}>
+            Khám phá hồ sơ<br />
+            <em className="italic text-primary">tâm lý của bạn</em>
+          </h1>
+
+          <p className="font-display text-[clamp(15px,2vw,19px)] font-normal leading-relaxed max-w-[440px] mx-auto" style={{ color: "rgba(255,255,255,0.65)" }}>
+            Làm bài test để nhận báo cáo cá nhân hoá — tổng hợp từ MaxDiff, MBTI, Enneagram và BaZi.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href={testUrl}
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl text-sm font-bold transition-all hover:opacity-90 hover:scale-105"
+              style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
+            >
+              Làm bài test ngay →
+            </a>
+          </div>
+
+          <p className="font-mono text-[10px] tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
+            MaxDiff · MBTI · Enneagram · BaZi · Thần Số Học
+          </p>
+        </div>
+      </main>
       <Footer />
     </div>
   );
