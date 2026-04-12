@@ -4,7 +4,6 @@ const Footer = () => (
     style={{
       background: "hsl(var(--body))",
       padding: "44px 20px",
-      marginTop: "64px",
     }}
   >
     <img 

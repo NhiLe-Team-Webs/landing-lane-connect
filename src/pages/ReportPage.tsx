@@ -91,10 +91,10 @@ const ReportPage = () => {
   const pdfUrl = `${testUrl}/report/${token}?print=1`;
 
   const tests = [
-    { label: "Nhu cầu & Ưu tiên (MaxDiff)", done: true, url: `${testUrl}/maxdiff/${token}` },
-    { label: "Giải mã Tính cách (MBTI)", done: true },
-    { label: "Phân tích Động lực (Enneagram)", done: true },
-    { label: "Bản đồ Vận mệnh (BaZi)", done: true },
+    { label: "Nhu cầu & Ưu tiên", done: true, url: `${testUrl}/maxdiff/${token}` },
+    { label: "Tính cách", done: true },
+    { label: "Động lực nội tâm", done: true },
+    { label: "Vận mệnh & Năng lượng", done: true },
   ];
 
   const primaryCourseName = data.ai_recommendation?.primary_course_name || data.primary_course_name || "Là Chính Mình";
@@ -120,7 +120,7 @@ const ReportPage = () => {
         
         {/* 01 MaxDiff */}
         <div className="pt-[52px] sm:pt-[72px] fade-up d2 print:break-inside-avoid print:pt-4">
-          <p className="text-[13px] font-bold text-placeholder tracking-[0.04em] mb-1.5">01 · Bạn đang cần gì nhất lúc này?</p>
+          <p className="text-[13px] font-bold text-placeholder tracking-[0.04em] mb-1.5">Bạn đang cần gì nhất lúc này?</p>
           <h2 className="text-[clamp(22px,5vw,32px)] font-bold tracking-[-0.025em] leading-[1.15] text-body mb-5 sm:mb-6">Những điều quan trọng nhất với bạn</h2>
           <div className="w-full bg-bg-2 rounded-[20px] sm:rounded-[24px] overflow-hidden border-[0.5px] border-card-border shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
             <iframe src={`${iframeUrl}/maxdiff/${token}?embed=1`} className="w-full h-[82svh] md:h-[1020px] block" loading="lazy"></iframe>
@@ -129,7 +129,7 @@ const ReportPage = () => {
 
         {/* 02 MBTI */}
         <div className="pt-[52px] sm:pt-[72px] fade-up d3 print:break-inside-avoid print:pt-8">
-          <p className="text-[13px] font-bold text-placeholder tracking-[0.04em] mb-1.5">02 · Bạn là kiểu người như thế nào?</p>
+          <p className="text-[13px] font-bold text-placeholder tracking-[0.04em] mb-1.5">Bạn là kiểu người như thế nào?</p>
           <h2 className="text-[clamp(22px,5vw,32px)] font-bold tracking-[-0.025em] leading-[1.15] text-body mb-5 sm:mb-6">Tính cách và cách bạn nhìn thế giới</h2>
           <div className="w-full bg-bg-2 rounded-[20px] sm:rounded-[24px] overflow-hidden border-[0.5px] border-card-border shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
             <iframe src={`${iframeUrl}/mbti/${token}?embed=1`} className="w-full h-[82svh] md:h-[1020px] block" loading="lazy"></iframe>
@@ -138,7 +138,7 @@ const ReportPage = () => {
 
         {/* 03 Enneagram */}
         <div className="pt-[52px] sm:pt-[72px] fade-up d4 print:break-inside-avoid print:pt-8">
-          <p className="text-[13px] font-bold text-placeholder tracking-[0.04em] mb-1.5">03 · Điều gì đang thúc đẩy bạn từ bên trong?</p>
+          <p className="text-[13px] font-bold text-placeholder tracking-[0.04em] mb-1.5">Điều gì đang thúc đẩy bạn từ bên trong?</p>
           <h2 className="text-[clamp(22px,5vw,32px)] font-bold tracking-[-0.025em] leading-[1.15] text-body mb-5 sm:mb-6">Động lực sâu bên trong của bạn</h2>
           <div className="w-full bg-bg-2 rounded-[20px] sm:rounded-[24px] overflow-hidden border-[0.5px] border-card-border shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
             <iframe src={`${iframeUrl}/enneagram/${token}?embed=1`} className="w-full h-[82svh] md:h-[1020px] block" loading="lazy"></iframe>
@@ -147,7 +147,7 @@ const ReportPage = () => {
 
         {/* 04 BaZi */}
         <div className="pt-[52px] sm:pt-[72px] fade-up d5 print:break-inside-avoid print:pt-8">
-          <p className="text-[13px] font-bold text-placeholder tracking-[0.04em] mb-1.5">04 · Năng lượng bẩm sinh và vận mệnh của bạn</p>
+          <p className="text-[13px] font-bold text-placeholder tracking-[0.04em] mb-1.5">Năng lượng bẩm sinh và vận mệnh của bạn</p>
           <h2 className="text-[clamp(22px,5vw,32px)] font-bold tracking-[-0.025em] leading-[1.15] text-body mb-5 sm:mb-6">Hồ sơ Bát Tự & Thần Số Học</h2>
           <div className="w-full bg-bg-2 rounded-[20px] sm:rounded-[24px] overflow-hidden border-[0.5px] border-card-border shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
             <iframe src={`${iframeUrl}/bazi-numerology/${token}?embed=1`} className="w-full h-[90svh] md:h-[1240px] block" loading="lazy"></iframe>
