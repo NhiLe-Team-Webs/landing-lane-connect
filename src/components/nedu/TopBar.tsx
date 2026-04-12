@@ -19,7 +19,7 @@ const TopBar = ({ pdfUrl }: { pdfUrl?: string }) => {
       </div>
       <div className="flex items-center gap-3.5">
         {pdfUrl && (
-          <span className="hidden sm:block text-xs font-medium tracking-[0.01em]" style={{ color: "hsl(var(--label))" }}>
+          <span className="text-xs font-medium tracking-[0.01em]" style={{ color: "hsl(var(--label))" }}>
             Chỉ riêng bạn mới thấy trang này
           </span>
         )}

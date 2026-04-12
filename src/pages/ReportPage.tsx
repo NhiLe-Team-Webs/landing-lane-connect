@@ -54,7 +54,7 @@ const ReportPage = () => {
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center space-y-4">
           <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="text-ink-3 text-sm">Đang tải hồ sơ của bạn...</p>
+          <p className="text-ink-3 text-sm">Nedu đang chuẩn bị hồ sơ riêng cho bạn...</p>
         </div>
       </div>
     );
@@ -67,12 +67,12 @@ const ReportPage = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center space-y-4 max-w-sm px-6">
-          <div className="text-5xl">🔍</div>
+          <div className="text-5xl">🌿</div>
           <h1 className="font-display text-2xl font-bold text-foreground">
-            Không tìm thấy hồ sơ
+            Hồ sơ không còn ở đây
           </h1>
           <p className="text-ink-3 text-sm leading-relaxed">
-            Link này đã hết hạn hoặc không tồn tại. Vui lòng kiểm tra email của bạn để lấy link mới.
+            Link đã hết hạn hoặc không còn hiệu lực. Kiểm tra lại email — hoặc làm bài test mới để nhận hồ sơ mới nhất của bạn.
           </p>
           <a
             href={testUrl}

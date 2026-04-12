@@ -32,9 +32,9 @@ const Index = () => {
               fontSize: "clamp(36px, 6vw, 56px)",
             }}
           >
-            Khám phá hồ sơ<br />
+            Hiểu bản thân hơn<br />
             <span style={{ color: "#B8860B" }}>
-              tâm lý của bạn.
+              bất kỳ ai.
             </span>
           </h1>
 
@@ -45,7 +45,7 @@ const Index = () => {
               letterSpacing: "-0.015em",
             }}
           >
-            Làm bài test để nhận báo cáo cá nhân hoá — tổng hợp từ MaxDiff, MBTI, Enneagram và BaZi.
+            5 phút để nhận báo cáo tâm lý cá nhân — riêng cho bạn, miễn phí, kết quả ngay.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
@@ -59,14 +59,14 @@ const Index = () => {
                 letterSpacing: "-0.01em",
               }}
             >
-              Làm bài test ngay
+              Khám phá bản thân →
             </a>
           </div>
 
           <p
             className="text-[11px] font-medium uppercase tracking-[0.08em] mt-8 text-[#A1A1A6]"
           >
-            MaxDiff · MBTI · Enneagram · BaZi · Thần Số Học
+            5 phút · Miễn phí · Kết quả ngay
           </p>
         </div>
       </main>

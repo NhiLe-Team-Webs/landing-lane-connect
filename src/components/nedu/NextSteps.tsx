@@ -31,35 +31,60 @@ const NextSteps = ({ pdfUrl }: { pdfUrl?: string }) => {
         <div className="flex-1 h-[0.5px]" style={{ background: "hsl(var(--card-border))" }} />
       </div>
 
-      {/* 2x2 Action Grid */}
-      <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5">
-        {steps.map((s) => (
+      {/* Primary action — full width, visually dominant */}
+      <a
+        href={steps[0].href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-between w-full transition-all active:scale-[0.98]"
+        style={{
+          padding: "20px 22px",
+          background: "hsl(var(--body))",
+          borderRadius: "18px",
+          color: "inherit",
+          marginBottom: "10px",
+        }}
+      >
+        <div className="flex items-center gap-4">
+          <div className="text-[32px] leading-none">{steps[0].icon}</div>
+          <div className="text-left">
+            <p className="font-bold leading-[1.2] tracking-[-0.01em] text-white" style={{ fontSize: "16px" }}>
+              {steps[0].title}
+            </p>
+            <p className="text-[13px] leading-[1.4] mt-0.5" style={{ color: "rgba(255,255,255,0.5)" }}>
+              {steps[0].desc}
+            </p>
+          </div>
+        </div>
+        <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "20px" }}>→</span>
+      </a>
+
+      {/* Secondary actions — 3-column row */}
+      <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
+        {steps.slice(1).map((s) => (
           <a
             key={s.title}
             href={s.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center justify-center text-center cursor-pointer transition-all active:scale-[0.97] active:shadow-md"
+            className="flex flex-col items-center justify-center text-center transition-all active:scale-[0.97]"
             style={{
-              padding: "20px 14px",
+              padding: "18px 10px",
               background: "hsl(var(--card))",
               border: "0.5px solid hsl(var(--card-border))",
-              borderRadius: "18px",
-              minHeight: "130px",
+              borderRadius: "16px",
+              minHeight: "110px",
               color: "inherit",
             }}
           >
-            <div className="text-[30px] sm:text-[34px] mb-2.5 sm:mb-3 leading-none">{s.icon}</div>
+            <div className="text-[28px] sm:text-[30px] mb-2 leading-none">{s.icon}</div>
             <p
-              className="font-semibold leading-[1.3] tracking-[-0.01em] mb-1.5"
-              style={{
-                fontSize: "15px",
-                color: "hsl(var(--body))",
-              }}
+              className="font-semibold leading-[1.3] tracking-[-0.01em] mb-1"
+              style={{ fontSize: "13px", color: "hsl(var(--body))" }}
             >
               {s.title}
             </p>
-            <p className="text-[13px] leading-[1.45]" style={{ color: "hsl(var(--label))" }}>
+            <p className="text-[11px] leading-[1.4]" style={{ color: "hsl(var(--label))" }}>
               {s.desc}
             </p>
           </a>

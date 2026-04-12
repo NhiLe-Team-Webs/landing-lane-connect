@@ -20,14 +20,16 @@ const Footer = () => (
         { label: "Chính sách bảo mật", url: "https://nedu.nhi.sg/policy" },
         { label: "Liên hệ", url: "https://nedu.nhi.sg/contact" },
       ].map((link) => (
-        <span
+        <a
           key={link.label}
-          className="text-[14px] cursor-pointer transition-colors active:text-white/75"
-          style={{ color: "rgba(255,255,255,0.45)" }}
-          onClick={() => link.url && window.open(link.url, "_blank")}
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[14px] transition-colors active:text-white/75"
+          style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none" }}
         >
           {link.label}
-        </span>
+        </a>
       ))}
     </div>
   </footer>
