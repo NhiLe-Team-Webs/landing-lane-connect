@@ -1,13 +1,32 @@
 const Footer = () => (
-  <footer className="bg-foreground py-8 px-6 text-center mt-16">
-    <p className="font-display text-lg font-bold text-primary mb-1.5">nedu.vn</p>
-    <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.35)" }}>
-      Giáo dục người lớn · NhiLe Holdings · Singapore
-    </p>
-    <div className="flex gap-4 justify-center flex-wrap">
-      {["nedu.vn", "Làm lại bài test", "Chính sách bảo mật", "Liên hệ"].map((link) => (
-        <span key={link} className="text-[11px] cursor-pointer transition-colors hover:text-secondary-foreground/75" style={{ color: "rgba(255,255,255,0.4)" }}>
-          {link}
+  <footer
+    className="no-print text-center"
+    style={{
+      background: "hsl(var(--body))",
+      padding: "44px 20px",
+      marginTop: "64px",
+    }}
+  >
+    <img 
+      src="https://nedu.nhi.sg/picture/nedu.svg" 
+      alt="N-Education" 
+      className="h-12 w-auto mx-auto mb-6 object-contain" 
+    />
+    
+    <div className="flex gap-6 justify-center flex-wrap">
+      {[
+        { label: "nedu.nhi.sg", url: "https://nedu.nhi.sg" },
+        { label: "Điều khoản sử dụng", url: "https://nedu.nhi.sg/terms" },
+        { label: "Chính sách bảo mật", url: "https://nedu.nhi.sg/policy" },
+        { label: "Liên hệ", url: "https://nedu.nhi.sg/contact" },
+      ].map((link) => (
+        <span
+          key={link.label}
+          className="text-[14px] cursor-pointer transition-colors active:text-white/75"
+          style={{ color: "rgba(255,255,255,0.45)" }}
+          onClick={() => link.url && window.open(link.url, "_blank")}
+        >
+          {link.label}
         </span>
       ))}
     </div>

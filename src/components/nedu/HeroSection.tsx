@@ -1,47 +1,76 @@
 interface HeroSectionProps {
   name: string;
-  tagline: string;
   persona: { emoji: string; label: string };
   tests: Array<{ label: string; done: boolean }>;
 }
 
-const HeroSection = ({ name, tagline, persona, tests }: HeroSectionProps) => {
+const HeroSection = ({ name, persona, tests }: HeroSectionProps) => {
   return (
-    <section className="relative overflow-hidden min-h-[420px] flex items-center px-6 py-16" style={{ background: "var(--hero-gradient)" }}>
-      {/* Orbs */}
-      <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full" style={{ background: "radial-gradient(circle, hsla(45, 91%, 53%, 0.1) 0%, transparent 70%)" }} />
-      <div className="absolute -bottom-20 -left-16 w-72 h-72 rounded-full" style={{ background: "radial-gradient(circle, hsla(153, 37%, 37%, 0.2) 0%, transparent 70%)" }} />
-      {/* Pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f5b419' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")` }} />
+    <section
+      className="fade-up d1 text-center"
+      style={{
+        background: "hsl(var(--bg-2))",
+        borderBottom: "0.5px solid hsl(var(--card-border))",
+        padding: "48px 20px 44px",
+      }}
+    >
+      {/* Eyebrow badge */}
+      <div
+        className="inline-block text-xs font-semibold uppercase tracking-[0.08em] rounded-full mb-[18px]"
+        style={{
+          color: "#B8860B",
+          background: "#FFF8E6",
+          border: "1px solid rgba(245,180,25,0.2)",
+          padding: "5px 14px",
+          letterSpacing: "0.08em",
+        }}
+      >
+        ✦ Nedu đã chuẩn bị riêng điều này cho bạn
+      </div>
 
-      <div className="relative z-10 max-w-[680px] mx-auto text-center w-full">
-        <div className="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-wider font-mono uppercase mb-5 border" style={{ background: "rgba(245,180,25,0.15)", borderColor: "rgba(245,180,25,0.25)", color: "hsl(var(--primary))" }}>
-          ✦ Hồ sơ tâm lý · Nedu AI
-        </div>
-        <h1 className="font-display text-[clamp(28px,4vw,44px)] font-bold leading-tight mb-4 tracking-tight" style={{ color: "#fff" }}>
-          Xin chào,<br />
-          <em className="italic text-primary">{name}</em>
-        </h1>
-        <p className="font-display text-[clamp(16px,2.2vw,21px)] font-normal italic leading-relaxed max-w-[520px] mx-auto mb-7" style={{ color: "rgba(255,255,255,0.65)" }}>
-          {tagline}
-        </p>
-        <div className="inline-flex items-center gap-2 rounded-full px-5 py-1.5 text-[13px] border" style={{ background: "rgba(255,255,255,0.07)", borderColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)" }}>
-          {persona.emoji} {persona.label}
-        </div>
-        <div className="flex gap-1.5 justify-center mt-5 flex-wrap">
-          {tests.map((t) => (
-            <span
-              key={t.label}
-              className={`flex items-center gap-1 rounded-lg px-3 py-1 text-[10px] font-mono border ${t.done
-                  ? "border-secondary/30 text-emerald-300"
-                  : "border-secondary-foreground/10 text-secondary-foreground/50"
-                }`}
-              style={{ background: t.done ? "rgba(45,106,79,0.2)" : "rgba(255,255,255,0.06)" }}
-            >
-              {t.done ? "✓" : "○"} {t.label}
-            </span>
-          ))}
-        </div>
+      {/* Name */}
+      <h1
+        className="font-bold leading-[1.1] tracking-[-0.02em] mb-1.5"
+        style={{
+          fontSize: "clamp(28px, 7vw, 44px)",
+          color: "hsl(var(--body))",
+        }}
+      >
+        Chào bạn,<br />
+        <em className="not-italic" style={{ color: "#B8860B" }}>{name}</em>
+      </h1>
+
+      {/* Persona pill */}
+      <div
+        className="inline-flex items-center gap-[7px] rounded-full mt-[18px]"
+        style={{
+          fontSize: "15px",
+          fontWeight: 500,
+          color: "hsl(var(--label))",
+          background: "hsl(var(--bg-3))",
+          padding: "6px 16px",
+        }}
+      >
+        {persona.emoji} {persona.label}
+      </div>
+
+      {/* Test status tags */}
+      <div className="flex flex-wrap gap-2 justify-center mt-4">
+        {tests.map((t) => (
+          <span
+            key={t.label}
+            className="flex items-center gap-[5px] rounded-full text-[13px] font-medium"
+            style={{
+              padding: "5px 13px",
+              border: "1px solid",
+              ...(t.done
+                ? { color: "#1C7C3B", borderColor: "#A8D5B5", background: "#E8F5EC" }
+                : { color: "hsl(var(--label))", borderColor: "hsl(var(--card-border))", background: "hsl(var(--bg-3))" }),
+            }}
+          >
+            {t.done ? "✓" : "○"} {t.label}
+          </span>
+        ))}
       </div>
     </section>
   );

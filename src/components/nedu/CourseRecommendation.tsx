@@ -1,39 +1,87 @@
 interface CourseRecommendationProps {
   courseName: string;
   why: string;
-  courseUrl?: string; // the task mentions we might use it or just generic, I will add it and link the buttons to it if available
+  courseUrl?: string;
 }
 
 const CourseRecommendation = ({ courseName, why, courseUrl = "https://nedu.vn" }: CourseRecommendationProps) => {
-
   return (
-    <div className="mt-12">
-      <div className="flex items-center gap-2.5 mb-2">
-        <span className="w-[22px] h-[22px] rounded-full bg-surface-2 flex items-center justify-center text-[9px] shrink-0">🎯</span>
-        <span className="font-mono text-[10px] font-bold tracking-widest uppercase text-ink-3">Khoá học được gợi ý</span>
-        <span className="flex-1 h-px bg-border" />
+    <div className="fade-up d6" style={{ marginTop: "52px" }}>
+      {/* Label row */}
+      <div className="flex items-center gap-2.5 mb-3.5">
+        <div
+          className="w-7 h-7 rounded-lg flex items-center justify-center text-[13px] shrink-0"
+          style={{
+            background: "hsl(var(--bg-2))",
+            border: "0.5px solid hsl(var(--card-border))",
+          }}
+        >
+          🎯
+        </div>
+        <span
+          className="text-[13px] font-semibold uppercase tracking-[0.06em]"
+          style={{ color: "hsl(var(--label))" }}
+        >
+          Nedu nghĩ khoá này sinh ra cho bạn
+        </span>
+        <div className="flex-1 h-[0.5px]" style={{ background: "hsl(var(--card-border))" }} />
       </div>
-      <div className="relative rounded-2xl p-7 overflow-hidden" style={{ background: "var(--rec-gradient)" }}>
-        <div className="absolute -top-16 -right-16 w-52 h-52 rounded-full" style={{ background: "rgba(245,180,25,0.08)" }} />
-        <div className="absolute -bottom-10 left-16 w-40 h-40 rounded-full" style={{ background: "rgba(245,180,25,0.05)" }} />
-        <div className="relative z-10">
-          <p className="font-mono text-[10px] font-bold tracking-widest uppercase mb-3" style={{ color: "rgba(255,255,255,0.4)" }}>
-            Dựa trên profile của bạn · Nedu AI Recommendation
-          </p>
-          <h3 className="font-display text-[22px] font-bold mb-2 leading-snug" style={{ color: "#fff" }}>
-            {courseName}
-          </h3>
-          <p className="text-sm font-light leading-relaxed mb-5 max-w-[480px]" style={{ color: "rgba(255,255,255,0.6)" }}>
-            {why}
-          </p>
-          <div className="flex gap-2.5 flex-wrap">
-            <a href={courseUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-7 py-3 text-sm font-bold rounded-xl bg-primary text-primary-foreground hover:brightness-95 transition-all hover:-translate-y-0.5">
-              🌸 Tìm hiểu khóa học →
-            </a>
-            <a href="https://m.me/neduedu" target="_blank" rel="noreferrer" className="px-6 py-3 text-[13px] font-semibold rounded-xl border-[1.5px] transition-all hover:border-secondary-foreground/50" style={{ color: "rgba(255,255,255,0.7)", borderColor: "rgba(255,255,255,0.2)" }}>
-              Tư vấn miễn phí
-            </a>
-          </div>
+
+      {/* Dark recommendation card */}
+      <div
+        className="relative overflow-hidden rounded-[20px] sm:rounded-[24px]"
+        style={{
+          background: "hsl(var(--body))",
+          padding: "28px 22px",
+        }}
+      >
+        <p
+          className="text-[11px] font-semibold uppercase tracking-[0.1em] mb-3"
+          style={{ color: "rgba(255,255,255,0.35)" }}
+        >
+          Dựa trên những gì bạn vừa chia sẻ với Nedu
+        </p>
+        <h3
+          className="font-bold leading-[1.2] mb-2.5 text-white"
+          style={{ fontSize: "clamp(22px, 5vw, 30px)", letterSpacing: "-0.02em" }}
+        >
+          {courseName}
+        </h3>
+        <p
+          className="font-normal leading-[1.65] max-w-[500px]"
+          style={{ fontSize: "clamp(14px, 2vw, 16px)", color: "rgba(255,255,255,0.55)" }}
+        >
+          {why}
+        </p>
+        <div className="flex gap-2.5 flex-wrap mt-[22px]">
+          <a
+            href={courseUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-[7px] font-bold rounded-[14px] transition-all active:opacity-80 active:scale-[0.98]"
+            style={{
+              padding: "13px 22px",
+              background: "#F5B419",
+              color: "#1a1000",
+              fontSize: "15px",
+            }}
+          >
+            🌸 Xem khoá học này →
+          </a>
+          <a
+            href="https://m.me/neduedu"
+            target="_blank"
+            rel="noreferrer"
+            className="font-semibold rounded-[14px] transition-all active:opacity-70"
+            style={{
+              padding: "13px 20px",
+              fontSize: "15px",
+              border: "1.5px solid rgba(255,255,255,0.2)",
+              color: "rgba(255,255,255,0.7)",
+            }}
+          >
+            Hỏi Nedu trước nhé
+          </a>
         </div>
       </div>
     </div>

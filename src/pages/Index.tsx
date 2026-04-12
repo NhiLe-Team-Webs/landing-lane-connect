@@ -7,36 +7,65 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <TopBar />
-      <main className="flex-1 flex items-center justify-center px-6 py-20" style={{ background: "var(--hero-gradient)" }}>
-        {/* Orbs */}
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, hsla(45, 91%, 53%, 0.1) 0%, transparent 70%)" }} />
-        <div className="absolute -bottom-20 -left-16 w-72 h-72 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, hsla(153, 37%, 37%, 0.2) 0%, transparent 70%)" }} />
-
+      <main
+        className="flex-1 flex items-center justify-center px-6 py-20 fade-up d1 text-center relative overflow-hidden"
+        style={{
+          background: "hsl(var(--bg-2))",
+          borderBottom: "0.5px solid hsl(var(--card-border))",
+        }}
+      >
         <div className="relative z-10 max-w-[560px] mx-auto text-center w-full space-y-8">
-          <div className="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-wider font-mono uppercase border" style={{ background: "rgba(245,180,25,0.15)", borderColor: "rgba(245,180,25,0.25)", color: "hsl(var(--primary))" }}>
-            ✦ Hồ sơ tâm lý · Nedu AI
+          <div
+            className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 text-[11px] font-semibold tracking-[0.06em] uppercase"
+            style={{
+              color: "#B8860B",
+              background: "#FFF8E6",
+              border: "1px solid rgba(245,180,25,0.2)",
+            }}
+          >
+            ✦ Hồ sơ tâm lý cá nhân
           </div>
 
-          <h1 className="font-display text-[clamp(28px,4vw,44px)] font-bold leading-tight tracking-tight" style={{ color: "#fff" }}>
+          <h1
+            className="font-bold leading-[1.08] tracking-[-0.035em] text-[#1D1D1F]"
+            style={{
+              fontSize: "clamp(36px, 6vw, 56px)",
+            }}
+          >
             Khám phá hồ sơ<br />
-            <em className="italic text-primary">tâm lý của bạn</em>
+            <span style={{ color: "#B8860B" }}>
+              tâm lý của bạn.
+            </span>
           </h1>
 
-          <p className="font-display text-[clamp(15px,2vw,19px)] font-normal leading-relaxed max-w-[440px] mx-auto" style={{ color: "rgba(255,255,255,0.65)" }}>
+          <p
+            className="font-medium leading-[1.4] max-w-[460px] mx-auto text-[#86868B]"
+            style={{
+              fontSize: "clamp(17px, 2.5vw, 21px)",
+              letterSpacing: "-0.015em",
+            }}
+          >
             Làm bài test để nhận báo cáo cá nhân hoá — tổng hợp từ MaxDiff, MBTI, Enneagram và BaZi.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
             <a
               href={testUrl}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl text-sm font-bold transition-all hover:opacity-90 hover:scale-105"
-              style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold transition-all hover:scale-105 active:scale-95"
+              style={{
+                background: "#1D1D1F",
+                color: "#F5F5F7",
+                fontSize: "15px",
+                letterSpacing: "-0.01em",
+              }}
             >
-              Làm bài test ngay →
+              Làm bài test ngay
             </a>
           </div>
 
-          <p className="font-mono text-[10px] tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
+          <p
+            className="text-[11px] font-medium uppercase tracking-[0.08em] mt-8 text-[#A1A1A6]"
+          >
             MaxDiff · MBTI · Enneagram · BaZi · Thần Số Học
           </p>
         </div>
