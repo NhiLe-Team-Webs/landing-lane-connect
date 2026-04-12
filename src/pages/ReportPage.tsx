@@ -35,7 +35,7 @@ const ReportPage = () => {
     if (!token) return;
     
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const apiUrl = `${(import.meta as any).env.VITE_API_URL || "https://nedu-api.nhi.sg"}/report/${token}`;
+    const apiUrl = `${(import.meta as any).env.VITE_API_URL || "https://nedu-api.nhi.sg"}/api/report/${token}`;
 
     fetch(apiUrl)
       .then((r) => {
@@ -61,6 +61,7 @@ const ReportPage = () => {
   }
 
   const testUrl = (import.meta as any).env.VITE_TEST_URL || "https://test.nhi.sg";
+  const iframeUrl = (import.meta as any).env.VITE_IFRAME_URL || "https://test.nhi.sg";
 
   if (state === "error" || !data) {
     return (
@@ -90,10 +91,10 @@ const ReportPage = () => {
   const pdfUrl = `${testUrl}/report/${token}?print=1`;
 
   const tests = [
-    { label: "Nhu cầu của bạn", done: true, url: `${testUrl}/maxdiff/${token}` },
-    { label: `Tính cách · ${data.mbti_type ?? "Chưa làm"}`, done: !!data.mbti_type },
-    { label: `Động lực · Type ${data.enneagram_type ?? "?"}`, done: !!data.enneagram_type },
-    { label: "Vận mệnh · Sắp có", done: !!data.bazi_data },
+    { label: "Nhu cầu & Ưu tiên (MaxDiff)", done: true, url: `${testUrl}/maxdiff/${token}` },
+    { label: "Giải mã Tính cách (MBTI)", done: true },
+    { label: "Phân tích Động lực (Enneagram)", done: true },
+    { label: "Bản đồ Vận mệnh (BaZi)", done: true },
   ];
 
   const primaryCourseName = data.ai_recommendation?.primary_course_name || data.primary_course_name || "Là Chính Mình";
@@ -122,7 +123,7 @@ const ReportPage = () => {
           <p className="text-[13px] font-bold text-placeholder tracking-[0.04em] mb-1.5">01 · Bạn đang cần gì nhất lúc này?</p>
           <h2 className="text-[clamp(22px,5vw,32px)] font-bold tracking-[-0.025em] leading-[1.15] text-body mb-5 sm:mb-6">Những điều quan trọng nhất với bạn</h2>
           <div className="w-full bg-bg-2 rounded-[20px] sm:rounded-[24px] overflow-hidden border-[0.5px] border-card-border shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
-            <iframe src={`${testUrl}/maxdiff/${token}?embed=1`} className="w-full h-[82svh] md:h-[1020px] block" loading="lazy"></iframe>
+            <iframe src={`${iframeUrl}/maxdiff/${token}?embed=1`} className="w-full h-[82svh] md:h-[1020px] block" loading="lazy"></iframe>
           </div>
         </div>
 
@@ -131,7 +132,7 @@ const ReportPage = () => {
           <p className="text-[13px] font-bold text-placeholder tracking-[0.04em] mb-1.5">02 · Bạn là kiểu người như thế nào?</p>
           <h2 className="text-[clamp(22px,5vw,32px)] font-bold tracking-[-0.025em] leading-[1.15] text-body mb-5 sm:mb-6">Tính cách và cách bạn nhìn thế giới</h2>
           <div className="w-full bg-bg-2 rounded-[20px] sm:rounded-[24px] overflow-hidden border-[0.5px] border-card-border shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
-            <iframe src={`${testUrl}/mbti/${token}?embed=1`} className="w-full h-[82svh] md:h-[1020px] block" loading="lazy"></iframe>
+            <iframe src={`${iframeUrl}/mbti/${token}?embed=1`} className="w-full h-[82svh] md:h-[1020px] block" loading="lazy"></iframe>
           </div>
         </div>
 
@@ -140,7 +141,7 @@ const ReportPage = () => {
           <p className="text-[13px] font-bold text-placeholder tracking-[0.04em] mb-1.5">03 · Điều gì đang thúc đẩy bạn từ bên trong?</p>
           <h2 className="text-[clamp(22px,5vw,32px)] font-bold tracking-[-0.025em] leading-[1.15] text-body mb-5 sm:mb-6">Động lực sâu bên trong của bạn</h2>
           <div className="w-full bg-bg-2 rounded-[20px] sm:rounded-[24px] overflow-hidden border-[0.5px] border-card-border shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
-            <iframe src={`${testUrl}/enneagram/${token}?embed=1`} className="w-full h-[82svh] md:h-[1020px] block" loading="lazy"></iframe>
+            <iframe src={`${iframeUrl}/enneagram/${token}?embed=1`} className="w-full h-[82svh] md:h-[1020px] block" loading="lazy"></iframe>
           </div>
         </div>
 
@@ -149,7 +150,7 @@ const ReportPage = () => {
           <p className="text-[13px] font-bold text-placeholder tracking-[0.04em] mb-1.5">04 · Năng lượng bẩm sinh và vận mệnh của bạn</p>
           <h2 className="text-[clamp(22px,5vw,32px)] font-bold tracking-[-0.025em] leading-[1.15] text-body mb-5 sm:mb-6">Hồ sơ Bát Tự & Thần Số Học</h2>
           <div className="w-full bg-bg-2 rounded-[20px] sm:rounded-[24px] overflow-hidden border-[0.5px] border-card-border shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
-            <iframe src={`${testUrl}/bazi-numerology/${token}?embed=1`} className="w-full h-[90svh] md:h-[1240px] block" loading="lazy"></iframe>
+            <iframe src={`${iframeUrl}/bazi-numerology/${token}?embed=1`} className="w-full h-[90svh] md:h-[1240px] block" loading="lazy"></iframe>
           </div>
         </div>
 
