@@ -4,7 +4,7 @@ const NextSteps = ({ pdfUrl }: { pdfUrl?: string }) => {
 
   const steps = [
     { icon: "🌸", title: "Tôi muốn học ngay", desc: "Nedu sẽ liên hệ bạn trong vòng 24 giờ", href: "https://nedu.nhi.sg/program" },
-    { icon: "💬", title: "Nói chuyện với Nedu", desc: "Chill thôi, 30 phút — không áp lực gì đâu", href: "https://m.me/neduedu" },
+    { icon: "💬", title: "Nói chuyện với Nedu", desc: "Chill thôi, 30 phút — không áp lực gì đâu", href: "https://www.facebook.com/neducation.sg" },
     { icon: "🔮", title: "Khám phá thêm về mình", desc: "BaZi · Thần Số Học và nhiều hơn nữa", href: testUrl },
     { icon: "📄", title: "Lưu hồ sơ của tôi", desc: "Đọc lại bất cứ lúc nào bạn cần", href: pdfUrl },
   ];
