@@ -69,13 +69,14 @@ const ShareSection = ({ pdfUrl, testUrl = "https://test.nhi.sg" }: { pdfUrl?: st
   const [showPanel, setShowPanel] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const fullText = `Tôi vừa khám phá hồ sơ tâm lý và năng lực cá nhân ở Nedu AI chuẩn lắm. Bạn cũng thử làm xem có hiểu thêm về mình không nha: ${testUrl}`;
+  const shareMessage = `Tôi vừa khám phá hồ sơ tâm lý và năng lực cá nhân ở Nedu AI chuẩn lắm. Bạn cũng thử làm xem có hiểu thêm về mình không nha:`;
+  const fullText = `${shareMessage} ${testUrl}`;
 
   const handleShare = async () => {
-    // On mobile, always try the native OS share sheet first
+    // On mobile: pass url as a separate field so iOS shows the full native sheet with contacts + AirDrop
     if (typeof navigator.share === "function") {
       try {
-        await navigator.share({ title: "Nedu - Thấu hiểu chính mình", text: fullText });
+        await navigator.share({ title: "Nedu - Thấu hiểu chính mình", text: shareMessage, url: testUrl });
         return;
       } catch (e) {
         if (e instanceof DOMException && e.name === "AbortError") return;
