@@ -159,7 +159,7 @@ const ShareSection = ({ pdfUrl, testUrl = "https://test.nhi.sg" }: { pdfUrl?: st
               color: "#B8860B",
             }}
           >
-            👋 Rủ bạn bè cùng thử
+            🤝 Chia sẻ với bạn bè
           </button>
         </div>
       </div>
@@ -176,7 +176,7 @@ const ShareSection = ({ pdfUrl, testUrl = "https://test.nhi.sg" }: { pdfUrl?: st
         >
           <DialogHeader>
             <DialogTitle className="text-[17px] font-bold font-display text-center">
-              Rủ bạn bè cùng thử
+              Chia sẻ với bạn bè
             </DialogTitle>
           </DialogHeader>
 
