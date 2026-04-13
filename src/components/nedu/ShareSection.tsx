@@ -8,9 +8,29 @@ import {
 
 const PLATFORMS = [
   {
+    name: "Zalo",
+    color: "#0068FF",
+    getUrl: (_fullText: string, url: string) =>
+      `https://zalo.me/share?url=${encodeURIComponent(url)}`,
+    icon: (
+      <span style={{ color: "white", fontWeight: 900, fontSize: "20px", fontFamily: "Arial, sans-serif", letterSpacing: "-1px" }}>Zalo</span>
+    ),
+  },
+  {
+    name: "Messenger",
+    color: "#0084FF",
+    getUrl: (_fullText: string, url: string) =>
+      `https://www.facebook.com/dialog/send?link=${encodeURIComponent(url)}&app_id=291494419107518&redirect_uri=${encodeURIComponent(url)}`,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="white" width="26" height="26">
+        <path d="M.001 11.639C.001 4.949 5.241 0 12.001 0S24 4.95 24 11.639c0 6.689-5.24 11.638-12 11.638-1.21 0-2.38-.16-3.47-.46a.96.96 0 00-.64.05l-2.39 1.05a.96.96 0 01-1.35-.85l-.07-2.14a.97.97 0 00-.32-.68A11.39 11.389 0 01.002 11.64zm8.32-2.19l-3.52 5.6c-.35.53.32 1.139.82.75l3.79-2.87c.26-.2.6-.2.87 0l2.8 2.1c.84.63 2.04.4 2.6-.48l3.52-5.6c.35-.53-.32-1.13-.82-.75l-3.79 2.87c-.25.2-.6.2-.86 0l-2.8-2.1a1.8 1.8 0 00-2.61.48z" />
+      </svg>
+    ),
+  },
+  {
     name: "Telegram",
     color: "#229ED9",
-    getUrl: (fullText: string) =>
+    getUrl: (fullText: string, _url: string) =>
       `https://t.me/share/url?url=&text=${encodeURIComponent(fullText)}`,
     icon: (
       <svg viewBox="0 0 24 24" fill="white" width="28" height="28">
@@ -21,7 +41,7 @@ const PLATFORMS = [
   {
     name: "WhatsApp",
     color: "#25D366",
-    getUrl: (fullText: string) =>
+    getUrl: (fullText: string, _url: string) =>
       `https://wa.me/?text=${encodeURIComponent(fullText)}`,
     icon: (
       <svg viewBox="0 0 24 24" fill="white" width="28" height="28">
@@ -32,8 +52,8 @@ const PLATFORMS = [
   {
     name: "Facebook",
     color: "#1877F2",
-    getUrl: (fullText: string) =>
-      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullText)}`,
+    getUrl: (_fullText: string, url: string) =>
+      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
     icon: (
       <svg viewBox="0 0 24 24" fill="white" width="28" height="28">
         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
@@ -43,7 +63,7 @@ const PLATFORMS = [
   {
     name: "X / Twitter",
     color: "#000000",
-    getUrl: (fullText: string) =>
+    getUrl: (fullText: string, _url: string) =>
       `https://twitter.com/intent/tweet?text=${encodeURIComponent(fullText)}`,
     icon: (
       <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
@@ -54,7 +74,7 @@ const PLATFORMS = [
   {
     name: "Email",
     color: "#6B7280",
-    getUrl: (fullText: string) =>
+    getUrl: (fullText: string, _url: string) =>
       `mailto:?subject=${encodeURIComponent("Thử làm bài test tâm lý ở Nedu AI")}&body=${encodeURIComponent(fullText)}`,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="26" height="26">
@@ -65,6 +85,10 @@ const PLATFORMS = [
   },
 ];
 
+const isMobile = () =>
+  /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+  (navigator.maxTouchPoints > 0 && window.innerWidth < 768);
+
 const ShareSection = ({ pdfUrl, testUrl = "https://test.nhi.sg" }: { pdfUrl?: string; tagline?: string; testUrl?: string }) => {
   const [showPanel, setShowPanel] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -73,14 +97,14 @@ const ShareSection = ({ pdfUrl, testUrl = "https://test.nhi.sg" }: { pdfUrl?: st
   const fullText = `${shareMessage} ${testUrl}`;
 
   const handleShare = async () => {
-    // On mobile: pass url as a separate field so iOS shows the full native sheet with contacts + AirDrop
-    if (typeof navigator.share === "function") {
+    // Mobile: native OS share sheet (contacts + AirDrop on iOS)
+    // Desktop: custom panel with platform deep links
+    if (isMobile() && typeof navigator.share === "function") {
       try {
         await navigator.share({ title: "Nedu - Thấu hiểu chính mình", text: shareMessage, url: testUrl });
         return;
       } catch (e) {
         if (e instanceof DOMException && e.name === "AbortError") return;
-        // fall through to desktop panel on any other error
       }
     }
 
@@ -94,7 +118,7 @@ const ShareSection = ({ pdfUrl, testUrl = "https://test.nhi.sg" }: { pdfUrl?: st
   };
 
   const handlePlatform = (platform: typeof PLATFORMS[number]) => {
-    window.open(platform.getUrl(fullText), "_blank", "noopener,noreferrer");
+    window.open(platform.getUrl(fullText, testUrl), "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -175,7 +199,7 @@ const ShareSection = ({ pdfUrl, testUrl = "https://test.nhi.sg" }: { pdfUrl?: st
           </DialogHeader>
 
           {/* Platform grid */}
-          <div className="grid grid-cols-5 gap-y-4 gap-x-2 mt-3">
+          <div className="grid grid-cols-4 gap-y-4 gap-x-2 mt-3">
             {PLATFORMS.map((platform) => (
               <button
                 key={platform.name}
