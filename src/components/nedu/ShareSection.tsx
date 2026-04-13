@@ -75,7 +75,7 @@ const PLATFORMS = [
     name: "Email",
     color: "#6B7280",
     getUrl: (fullText: string, _url: string) =>
-      `mailto:?subject=${encodeURIComponent("Thử làm bài test tâm lý ở Nedu AI")}&body=${encodeURIComponent(fullText)}`,
+      `mailto:?subject=${encodeURIComponent("Thử bài test khám phá bản thân này xem — hay lắm 🙌")}&body=${encodeURIComponent(fullText)}`,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="26" height="26">
         <rect x="2" y="4" width="20" height="16" rx="2" />
@@ -92,8 +92,9 @@ const isMobile = () =>
 const ShareSection = ({ pdfUrl, testUrl = "https://test.nhi.sg" }: { pdfUrl?: string; tagline?: string; testUrl?: string }) => {
   const [showPanel, setShowPanel] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [toastMsg, setToastMsg] = useState("");
 
-  const shareMessage = `Tôi vừa khám phá hồ sơ tâm lý và năng lực cá nhân ở Nedu AI chuẩn lắm. Bạn cũng thử làm xem có hiểu thêm về mình không nha:`;
+  const shareMessage = `Mình vừa khám phá điều thú vị về bản thân qua bài test này — bạn cũng thử xem sao 🙌`;
   const fullText = `${shareMessage} ${testUrl}`;
 
   const handleShare = async () => {
@@ -118,6 +119,9 @@ const ShareSection = ({ pdfUrl, testUrl = "https://test.nhi.sg" }: { pdfUrl?: st
   };
 
   const handlePlatform = (platform: typeof PLATFORMS[number]) => {
+    navigator.clipboard?.writeText(fullText);
+    setToastMsg("Tin nhắn đã copy — dán vào chat là xong!");
+    setTimeout(() => setToastMsg(""), 3000);
     window.open(platform.getUrl(fullText, testUrl), "_blank", "noopener,noreferrer");
   };
 
@@ -221,6 +225,22 @@ const ShareSection = ({ pdfUrl, testUrl = "https://test.nhi.sg" }: { pdfUrl?: st
               </button>
             ))}
           </div>
+
+          {/* Auto-copy toast */}
+          {toastMsg && (
+            <div
+              className="text-center rounded-xl font-medium animate-in fade-in slide-in-from-bottom-2"
+              style={{
+                padding: "10px 16px",
+                fontSize: "13px",
+                background: "#E8F5EC",
+                color: "#1C7C3B",
+                border: "1px solid #A8D5B5",
+              }}
+            >
+              ✓ {toastMsg}
+            </div>
+          )}
 
           {/* Divider */}
           <div
