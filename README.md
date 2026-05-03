@@ -64,4 +64,4 @@ Khi chạy local cả 2, set trong test.nhi.sg:
 NEXT_PUBLIC_REPORT_BASE_URL=http://localhost:8080
 ```
 
-→ Xem thêm: [test.nhi.sg repo](../test.nhi.sg)
+→ Xem thêm: [test.nhi.sg repo](https://github.com/NLH-NEDU-LABS/nedu-test)
