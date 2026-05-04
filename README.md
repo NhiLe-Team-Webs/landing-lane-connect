@@ -1,4 +1,4 @@
-# test.nedu.vn — Nedu Report Viewer
+# test.nedu.vn — Nedu Report Viewer.
 
 **Vite + React** SPA hiển thị kết quả assessment sau khi user làm xong quiz ở **test.nhi.sg**.  
 Không có backend riêng — chỉ fetch data từ API của test.nhi.sg theo token.
